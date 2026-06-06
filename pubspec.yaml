@@ -1,0 +1,31 @@
+name: tugas_ml
+description: "Voice Emotion Recognition App"
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.7
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.9
+  record: ^6.2.1
+  file_picker: ^11.0.2
+  dio: ^5.9.2
+  permission_handler: ^12.0.3
+  path_provider: ^2.1.5
+  path: ^1.9.1
+  audioplayers: ^6.7.1
+  ffmpeg_kit_flutter_new: ^4.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true

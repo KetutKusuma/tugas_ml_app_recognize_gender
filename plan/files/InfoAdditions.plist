@@ -1,0 +1,22 @@
+<!-- Tambahkan key berikut ke dalam dict di Info.plist iOS Anda -->
+
+<!-- Izin mikrofon -->
+<key>NSMicrophoneUsageDescription</key>
+<string>Aplikasi membutuhkan akses mikrofon untuk merekam suara dan mengenali emosi.</string>
+
+<!-- Izin akses file / photo library -->
+<key>NSPhotoLibraryUsageDescription</key>
+<string>Aplikasi membutuhkan akses untuk memilih file audio.</string>
+
+<!-- Izin akses dokumen / file -->
+<key>UISupportsDocumentBrowser</key>
+<true/>
+
+<!-- Izin koneksi HTTP (localhost testing) -->
+<!-- Tambahkan di NSAppTransportSecurity jika belum ada -->
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+    <!-- Di production, ganti dengan NSExceptionDomains spesifik -->
+</dict>

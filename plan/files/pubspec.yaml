@@ -1,0 +1,38 @@
+name: emotion_recognition
+description: Voice Emotion Recognition App
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # ── Rekam audio dari microphone ──────────────────────────
+  record: ^5.1.2             # rekam mic → file .wav langsung
+
+  # ── Ambil file dari storage ──────────────────────────────
+  file_picker: ^8.1.2        # picker file audio
+
+  # ── Trim audio 3 detik + konversi ke WAV ────────────────
+  ffmpeg_kit_flutter_min: ^6.0.3   # trim + konversi (min = tanpa GPL codec)
+
+  # ── HTTP kirim ke API ────────────────────────────────────
+  dio: ^5.7.0                # HTTP client multipart upload
+
+  # ── UI & utilities ───────────────────────────────────────
+  permission_handler: ^11.3.1   # izin mikrofon & storage
+  path_provider: ^2.1.4         # lokasi folder temp
+  path: ^1.9.0                  # manipulasi path file
+  audioplayers: ^6.1.0          # preview audio sebelum kirim
+  lottie: ^3.1.2                # animasi mic (opsional)
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
