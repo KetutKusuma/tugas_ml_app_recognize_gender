@@ -8,6 +8,7 @@
 // ─────────────────────────────────────────────────────────────
 
 import 'dart:io';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:ffmpeg_kit_flutter_new/ffmpeg_kit.dart';
 import 'package:ffmpeg_kit_flutter_new/return_code.dart';
 import 'package:path/path.dart' as p;
@@ -88,12 +89,11 @@ class AudioService {
   // ── Helper: ambil Android SDK version ─────────────────────
   Future<int> _getAndroidSdkVersion() async {
     try {
-      // Gunakan Platform.version sebagai fallback
-      // Atau pakai package device_info_plus jika tersedia
-      // Default ke 28 (Android 9) jika tidak bisa detect
-      return 28;
+      final deviceInfo = DeviceInfoPlugin();
+      final androidInfo = await deviceInfo.androidInfo;
+      return androidInfo.version.sdkInt;
     } catch (_) {
-      return 28;
+      return 28; // fallback Android 9
     }
   }
 
