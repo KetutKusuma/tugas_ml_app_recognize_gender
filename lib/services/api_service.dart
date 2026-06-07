@@ -1,7 +1,4 @@
 // lib/services/api_service.dart
-// ─────────────────────────────────────────────────────────────
-// Kirim file .wav ke FastAPI /predict
-// ─────────────────────────────────────────────────────────────
 
 import 'dart:io';
 import 'package:dio/dio.dart';
@@ -19,13 +16,23 @@ class PredictionResult {
     required this.filename,
   });
 
-  // Probabilitas tertinggi (confidence)
+  String get gender => prediction.toString() == '0' ? 'Female' : 'Male';
+  String genderFromLabel(String label) {
+    switch (label.toLowerCase()) {
+      case '0':
+        return 'Female';
+      case '1':
+        return 'Male';
+      default:
+        return 'Unknown';
+    }
+  }
+
   double get confidence {
     if (probability.isEmpty) return 0;
     return probability.reduce((a, b) => a > b ? a : b);
   }
 
-  // Index kelas dengan probabilitas tertinggi
   int get topIndex => probability.indexOf(confidence);
 
   factory PredictionResult.fromJson(Map<String, dynamic> json) {
@@ -42,26 +49,39 @@ class PredictionResult {
 }
 
 class ApiService {
-  // ⚠️  Ganti dengan IP server Anda jika test di device fisik
-  //     Emulator Android   : http://10.0.2.2:8000
-  //     Device fisik / iOS : http://<IP_LAN_ANDA>:8000
-  //     Localhost (web)    : http://127.0.0.1:8000
-  static const String _baseUrl = 'http://192.168.0.12:8000';
+  // URL bisa diubah saat runtime lewat setBaseUrl()
+  String _baseUrl = 'https://audio-recognition-gender.onrender.com';
 
-  final Dio _dio = Dio(
-    BaseOptions(
-      baseUrl: _baseUrl,
-      connectTimeout: const Duration(seconds: 15),
-      receiveTimeout: const Duration(seconds: 30),
-    ),
-  );
+  late Dio _dio;
 
-  // ── Kirim .wav → dapat prediksi ───────────────────────
+  ApiService() {
+    _initDio();
+  }
+
+  void _initDio() {
+    _dio = Dio(
+      BaseOptions(
+        baseUrl: _baseUrl,
+        connectTimeout: const Duration(seconds: 10),
+        receiveTimeout: const Duration(seconds: 30),
+      ),
+    );
+  }
+
+  String get baseUrl => _baseUrl;
+
+  // Ubah URL dan reinit Dio
+  void setBaseUrl(String url) {
+    _baseUrl = url.trimRight().replaceAll(
+      RegExp(r'/$'),
+      '',
+    ); // hapus trailing slash
+    _initDio();
+  }
+
   Future<PredictionResult> predict(String wavPath) async {
     final file = File(wavPath);
-    if (!file.existsSync()) {
-      throw Exception('File tidak ditemukan: $wavPath');
-    }
+    if (!file.existsSync()) throw Exception('File tidak ditemukan: $wavPath');
 
     final formData = FormData.fromMap({
       'file': await MultipartFile.fromFile(wavPath, filename: 'audio.wav'),
@@ -77,7 +97,6 @@ class ApiService {
     }
   }
 
-  // ── Health check ──────────────────────────────────────
   Future<bool> isServerReady() async {
     try {
       final response = await _dio.get('/health');

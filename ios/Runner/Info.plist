@@ -45,5 +45,7 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Aplikasi memerlukan akses ke mikrofon untuk merekam suara Anda guna pengenalan gender.</string>
 </dict>
 </plist>

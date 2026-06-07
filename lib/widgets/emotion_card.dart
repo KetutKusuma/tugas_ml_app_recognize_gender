@@ -46,9 +46,9 @@ class EmotionCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.08),
+        color: color.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: color.withOpacity(0.3), width: 1.5),
+        border: Border.all(color: color.withValues(alpha: 0.3), width: 1.5),
       ),
       child: Column(
         children: [
@@ -57,7 +57,7 @@ class EmotionCard extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.symmetric(vertical: 24),
             decoration: BoxDecoration(
-              color: color.withOpacity(0.12),
+              color: color.withValues(alpha: 0.12),
               borderRadius: const BorderRadius.vertical(
                 top: Radius.circular(24),
               ),
@@ -70,7 +70,7 @@ class EmotionCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  result.prediction.toUpperCase(),
+                  result.gender,
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w700,
@@ -81,7 +81,10 @@ class EmotionCard extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   '${(result.confidence * 100).toStringAsFixed(1)}% confidence',
-                  style: TextStyle(fontSize: 13, color: color.withOpacity(0.8)),
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: color.withValues(alpha: 0.8),
+                  ),
                 ),
               ],
             ),
@@ -94,7 +97,7 @@ class EmotionCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'All emotions',
+                  'Gender Probabilities',
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
@@ -104,12 +107,12 @@ class EmotionCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 ...List.generate(result.classes.length, (i) {
-                  final label = result.classes[i];
+                  final label = result.genderFromLabel(result.classes[i]);
                   final prob = i < result.probability.length
                       ? result.probability[i]
                       : 0.0;
                   final barColor = _colorFor(label);
-                  final isTop = label == result.prediction;
+                  final isTop = label == result.gender;
 
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 10),

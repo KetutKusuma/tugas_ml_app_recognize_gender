@@ -1,12 +1,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Izin mikrofon -->
+    <!-- Mikrofon -->
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-    <!-- Izin storage (baca file audio) -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+
+    <!-- Storage - Android ≤ 12 (API 32) -->
+    <uses-permission 
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32"/>
-    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO"/>
-    <!-- Izin internet (kirim ke API) -->
+    <uses-permission 
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32"/>
+
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+
     <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:label="tugas_ml"
         android:name="${applicationName}"
