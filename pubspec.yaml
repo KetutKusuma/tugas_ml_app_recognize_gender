@@ -1,4 +1,4 @@
-name: tugas_ml
+name: audio_gender_recognition
 description: "Voice Emotion Recognition App"
 
 publish_to: "none"
@@ -30,3 +30,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/result/

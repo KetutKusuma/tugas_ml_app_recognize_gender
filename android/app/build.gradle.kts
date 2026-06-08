@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.tugas_ml"
+namespace = "com.example.audio_gender_recognition"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -20,7 +20,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.tugas_ml"
+applicationId = "com.example.audio_gender_recognition"
         minSdk = flutter.minSdkVersion  // record_android requires minSdk 23+
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
