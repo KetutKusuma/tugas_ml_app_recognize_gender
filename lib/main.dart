@@ -1,8 +1,8 @@
+import 'package:audio_gender_recognition/screens/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'screens/home_screen.dart';
 
-/// build : build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+/// command build : flutter build apk --split-per-abi --release --target-platform android-arm64
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: const HomeScreen(),
+      home: const MainScreen(),
     );
   }
 }
