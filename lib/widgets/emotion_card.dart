@@ -2,7 +2,7 @@
 // ─────────────────────────────────────────────────────────────
 // Card hasil prediksi dengan emoji + bar probabilitas
 // ─────────────────────────────────────────────────────────────
-
+// ini ga kepake anjerr
 import 'package:flutter/material.dart';
 import '../services/api_service.dart';
 

@@ -1,5 +1,5 @@
 // lib/screens/main_page.dart
-
+/// test menambhakan aja
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 import 'training_result_screen.dart';
@@ -14,23 +14,19 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
 
-  final List<Widget> _pages = const [
-    HomeScreen(),
-    TrainingResultScreen(),
-  ];
+  final List<Widget> _pages = const [HomeScreen(), TrainingResultScreen()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF8F9FB),
-      body: IndexedStack(
-        index: _currentIndex,
-        children: _pages,
-      ),
+      body: IndexedStack(index: _currentIndex, children: _pages),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          border: Border(top: BorderSide(color: Colors.grey.shade100, width: 1)),
+          border: Border(
+            top: BorderSide(color: Colors.grey.shade100, width: 1),
+          ),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withValues(alpha: 0.05),
